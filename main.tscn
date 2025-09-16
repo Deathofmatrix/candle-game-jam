@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://q8dxv8eghb0g"]
+
+[ext_resource type="PackedScene" uid="uid://ryojj2ra6ivw" path="res://player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://4eqyeufa32lj" path="res://assets/Meshes/Birch_Tree_2.fbx" id="2_0xm2m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+size = Vector2(10, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
+data = PackedVector3Array(5, 0, 50, -5, 0, 50, 5, 0, -50, -5, 0, 50, -5, 0, -50, 5, 0, -50)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+mesh = SubResource("PlaneMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0xm2m")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18759906, 0)
+
+[node name="Birch_Tree_2" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2648611, 0.01591444, -8.673339)
