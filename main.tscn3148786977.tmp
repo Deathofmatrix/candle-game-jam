@@ -1,0 +1,229 @@
+[gd_scene load_steps=24 format=3 uid="uid://q8dxv8eghb0g"]
+
+[ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bguif554fyh7n" path="res://assets/glTF/DeadTree_3.gltf" id="2_w48qg"]
+[ext_resource type="PackedScene" uid="uid://gxnmjc34fko" path="res://assets/glTF/CommonTree_1.gltf" id="3_vivmo"]
+[ext_resource type="Shader" uid="uid://c6hex6exyrltt" path="res://shaders/pixelshader.gdshader" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c7byka2n03fd4" path="res://assets/glTF/CommonTree_2.gltf" id="4_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://co2y22o2lpn1n" path="res://assets/glTF/CommonTree_3.gltf" id="5_yaehf"]
+[ext_resource type="PackedScene" uid="uid://divvg711eydkv" path="res://assets/glTF/CommonTree_4.gltf" id="6_074og"]
+[ext_resource type="PackedScene" uid="uid://b0gtwg4vl45pg" path="res://assets/glTF/CommonTree_5.gltf" id="7_cegan"]
+[ext_resource type="PackedScene" uid="uid://bdde4wpef14s3" path="res://assets/glTF/DeadTree_2.gltf" id="8_82xsv"]
+[ext_resource type="PackedScene" uid="uid://myi3vx0vabyw" path="res://assets/glTF/DeadTree_4.gltf" id="9_getpj"]
+[ext_resource type="PackedScene" uid="uid://cxjk8xkkj86y3" path="res://assets/glTF/DeadTree_5.gltf" id="10_ryguw"]
+[ext_resource type="PackedScene" uid="uid://yetom2h7l6pj" path="res://assets/glTF/TwistedTree_5.gltf" id="11_d13ii"]
+[ext_resource type="PackedScene" uid="uid://dm4ekbtk6o5as" path="res://assets/glTF/TwistedTree_4.gltf" id="12_1u8w0"]
+[ext_resource type="Script" uid="uid://ds077tbntb54c" path="res://camera_controller.gd" id="14_2cqfq"]
+[ext_resource type="Script" uid="uid://btvjbqjv0jeox" path="res://candle.gd" id="15_vivmo"]
+
+[sub_resource type="Sky" id="Sky_1bvp3"]
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 1
+sky = SubResource("Sky_1bvp3")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+size = Vector2(10, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
+data = PackedVector3Array(5, 0, 50, -5, 0, 50, 5, 0, -50, -5, 0, 50, -5, 0, -50, 5, 0, -50)
+
+[sub_resource type="Curve3D" id="Curve3D_lquwl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 2, 0.014, 0, 0, 0, 0, 0, 0, 0, 2, 100),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+render_priority = 0
+shader = ExtResource("4_1bvp3")
+shader_parameter/TwixelAngle = 0.0
+shader_parameter/PixelSize = 2.0000000475
+shader_parameter/Posterize = true
+shader_parameter/ColorSteps = 64
+shader_parameter/UsePalette = false
+shader_parameter/PaletteSize = 8
+shader_parameter/PaletteColor0 = Color(0.05, 0.05, 0.05, 1)
+shader_parameter/PaletteColor1 = Color(0.25, 0.15, 0.12, 1)
+shader_parameter/PaletteColor2 = Color(0.5, 0.35, 0.25, 1)
+shader_parameter/PaletteColor3 = Color(0.9, 0.85, 0.7, 1)
+shader_parameter/Brightness = 1.0
+shader_parameter/Saturation = 1.0
+shader_parameter/Contrast = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
+material = SubResource("ShaderMaterial_lquwl")
+flip_faces = true
+size = Vector2(2, 2)
+center_offset = Vector3(0, 0, -1)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+mesh = SubResource("PlaneMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0xm2m")
+
+[node name="woodenhouse" parent="World" instance=ExtResource("1_h2yge")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.1166015, -1.850071, 100.06112)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="World/woodenhouse"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.6266924, 4.0112076, -0.4363327)
+light_color = Color(1, 0.54901963, 0.28627452, 1)
+light_energy = 3.553
+light_indirect_energy = 0.0
+light_size = 0.329
+spot_range = 4096.0
+spot_attenuation = 4.48
+spot_angle = 77.61
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World/woodenhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6522824, 4.03041, 0.25457)
+light_color = Color(1, 0.54901963, 0.28627452, 1)
+light_energy = 4.58
+light_specular = 7.536
+shadow_enabled = true
+shadow_bias = 3.587
+shadow_normal_bias = 0.0
+shadow_blur = 10.0
+omni_range = 0.718
+omni_attenuation = 0.0
+
+[node name="Trees" type="Node3D" parent="World"]
+
+[node name="DeadTree_32" parent="World/Trees" instance=ExtResource("2_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5292177, 0.33555448, 0.7445214)
+
+[node name="CommonTree_12" parent="World/Trees" instance=ExtResource("3_vivmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0694094, 0.24277201, 2.9604416)
+
+[node name="CommonTree_22" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.033222, 0.24277297, 6.0369797)
+
+[node name="CommonTree_27" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9741402, 0.24277297, 10.293396)
+
+[node name="CommonTree_28" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8263245, 0.24277392, 13.863882)
+
+[node name="CommonTree_29" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.600409, 0.24277392, 26.385893)
+
+[node name="CommonTree_30" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7130742, 0.24277392, 30.835567)
+
+[node name="CommonTree_31" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8890586, 0.24277392, 34.828995)
+
+[node name="CommonTree_38" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0726104, 0.24277392, 37.76424)
+
+[node name="CommonTree_39" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1385894, 0.24277392, 33.361397)
+
+[node name="CommonTree_23" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2961006, 0.24277297, 11.610169)
+
+[node name="CommonTree_24" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.502864, 0.24277201, 13.399677)
+
+[node name="CommonTree_25" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5616188, 0.24277201, 12.715626)
+
+[node name="CommonTree_26" parent="World/Trees" instance=ExtResource("4_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4047327, 0.24277201, 13.960382)
+
+[node name="CommonTree_32" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9888897, 0.24277201, 8.842312)
+
+[node name="CommonTree_33" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.378872, 0.24277201, 18.41516)
+
+[node name="CommonTree_34" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6646557, 0.24277106, 18.665527)
+
+[node name="CommonTree_35" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7058735, 0.24277106, 24.944613)
+
+[node name="CommonTree_36" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7817717, 0.24277106, 23.484707)
+
+[node name="CommonTree_37" parent="World/Trees" instance=ExtResource("5_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6113005, 0.24277106, 28.343567)
+
+[node name="CommonTree_42" parent="World/Trees" instance=ExtResource("6_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99121, 0.24277201, 12.318802)
+
+[node name="CommonTree_52" parent="World/Trees" instance=ExtResource("7_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7673178, 0.24277106, 15.225853)
+
+[node name="DeadTree_22" parent="World/Trees" instance=ExtResource("8_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.313591, 0.33555555, 1.8866997)
+
+[node name="DeadTree_33" parent="World/Trees" instance=ExtResource("2_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.097314, 0.3355546, 4.522728)
+
+[node name="DeadTree_42" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2028894, 0.33555555, 7.194874)
+
+[node name="DeadTree_43" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1866455, 0.33555555, 20.308764)
+
+[node name="DeadTree_44" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.402526, 0.33555555, 29.996271)
+
+[node name="DeadTree_45" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.199853, 0.33555555, 25.157814)
+
+[node name="DeadTree_46" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1067057, 0.33555555, 34.51792)
+
+[node name="DeadTree_52" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.173526, 0.3355546, 9.850517)
+
+[node name="TwistedTree_52" parent="World/Trees" instance=ExtResource("11_d13ii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.525012, 0.20147277, 51.52001)
+
+[node name="TwistedTree_42" parent="World/Trees" instance=ExtResource("12_1u8w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.817347, 0.20147468, 55.161934)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_lquwl")
+
+[node name="PlayerPathFollow" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-1, 0, -8.742261e-08, 0, 0.9999981, 0, 8.742278e-08, 0, -0.9999981, 0, 2, 0.014)
+loop = false
+script = ExtResource("2_h2yge")
+
+[node name="Head" type="Node3D" parent="Path3D/PlayerPathFollow"]
+script = ExtResource("14_2cqfq")
+mouse_sensitivity = null
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PlayerPathFollow/Head"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PlayerPathFollow/Head/Camera3D"]
+mesh = SubResource("QuadMesh_lquwl")
+
+[node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow"]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 2.2000847e-07, 0, -2.5166082)
+script = ExtResource("15_vivmo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Candle"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1.0000019, 0, -8.742296e-08, 0, -1.0000019, 0, 0, 0)
+light_color = Color(1, 0.67058825, 0.27058825, 1)
+light_energy = 1.973
+light_size = 0.068
+light_specular = 0.0
+shadow_enabled = true
