@@ -1,30 +1,35 @@
-[gd_scene load_steps=24 format=3 uid="uid://q8dxv8eghb0g"]
+[gd_scene load_steps=27 format=3 uid="uid://q8dxv8eghb0g"]
 
 [ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bguif554fyh7n" path="res://assets/glTF/DeadTree_3.gltf" id="2_w48qg"]
-[ext_resource type="PackedScene" uid="uid://gxnmjc34fko" path="res://assets/glTF/CommonTree_1.gltf" id="3_vivmo"]
+[ext_resource type="PackedScene" uid="uid://bguif554fyh7n" path="res://assets/Envuironment (glTF)/DeadTree_3.gltf" id="2_w48qg"]
+[ext_resource type="PackedScene" uid="uid://gxnmjc34fko" path="res://assets/Envuironment (glTF)/CommonTree_1.gltf" id="3_vivmo"]
 [ext_resource type="Shader" uid="uid://c6hex6exyrltt" path="res://shaders/pixelshader.gdshader" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://c7byka2n03fd4" path="res://assets/glTF/CommonTree_2.gltf" id="4_2cqfq"]
-[ext_resource type="PackedScene" uid="uid://co2y22o2lpn1n" path="res://assets/glTF/CommonTree_3.gltf" id="5_yaehf"]
-[ext_resource type="PackedScene" uid="uid://divvg711eydkv" path="res://assets/glTF/CommonTree_4.gltf" id="6_074og"]
-[ext_resource type="PackedScene" uid="uid://b0gtwg4vl45pg" path="res://assets/glTF/CommonTree_5.gltf" id="7_cegan"]
-[ext_resource type="PackedScene" uid="uid://bdde4wpef14s3" path="res://assets/glTF/DeadTree_2.gltf" id="8_82xsv"]
-[ext_resource type="PackedScene" uid="uid://myi3vx0vabyw" path="res://assets/glTF/DeadTree_4.gltf" id="9_getpj"]
-[ext_resource type="PackedScene" uid="uid://cxjk8xkkj86y3" path="res://assets/glTF/DeadTree_5.gltf" id="10_ryguw"]
-[ext_resource type="PackedScene" uid="uid://yetom2h7l6pj" path="res://assets/glTF/TwistedTree_5.gltf" id="11_d13ii"]
-[ext_resource type="PackedScene" uid="uid://dm4ekbtk6o5as" path="res://assets/glTF/TwistedTree_4.gltf" id="12_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://c7byka2n03fd4" path="res://assets/Envuironment (glTF)/CommonTree_2.gltf" id="4_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://co2y22o2lpn1n" path="res://assets/Envuironment (glTF)/CommonTree_3.gltf" id="5_yaehf"]
+[ext_resource type="PackedScene" uid="uid://divvg711eydkv" path="res://assets/Envuironment (glTF)/CommonTree_4.gltf" id="6_074og"]
+[ext_resource type="PackedScene" uid="uid://b0gtwg4vl45pg" path="res://assets/Envuironment (glTF)/CommonTree_5.gltf" id="7_cegan"]
+[ext_resource type="PackedScene" uid="uid://bdde4wpef14s3" path="res://assets/Envuironment (glTF)/DeadTree_2.gltf" id="8_82xsv"]
+[ext_resource type="PackedScene" uid="uid://myi3vx0vabyw" path="res://assets/Envuironment (glTF)/DeadTree_4.gltf" id="9_getpj"]
+[ext_resource type="PackedScene" uid="uid://cxjk8xkkj86y3" path="res://assets/Envuironment (glTF)/DeadTree_5.gltf" id="10_ryguw"]
+[ext_resource type="PackedScene" uid="uid://yetom2h7l6pj" path="res://assets/Envuironment (glTF)/TwistedTree_5.gltf" id="11_d13ii"]
+[ext_resource type="PackedScene" uid="uid://dm4ekbtk6o5as" path="res://assets/Envuironment (glTF)/TwistedTree_4.gltf" id="12_1u8w0"]
 [ext_resource type="Script" uid="uid://ds077tbntb54c" path="res://camera_controller.gd" id="14_2cqfq"]
 [ext_resource type="Script" uid="uid://btvjbqjv0jeox" path="res://candle.gd" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://dn2eodrql4q1b" path="res://assets/HNIY_Torch_v001.fbx" id="17_yaehf"]
+[ext_resource type="Texture2D" uid="uid://6ngsqoy0x3er" path="res://assets/hand.png" id="18_074og"]
 
 [sub_resource type="Sky" id="Sky_1bvp3"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
-background_mode = 1
 sky = SubResource("Sky_1bvp3")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+material = SubResource("StandardMaterial3D_2cqfq")
 size = Vector2(10, 120)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
@@ -41,15 +46,15 @@ point_count = 2
 render_priority = 0
 shader = ExtResource("4_1bvp3")
 shader_parameter/TwixelAngle = 0.0
-shader_parameter/PixelSize = 4.000000142499999
+shader_parameter/PixelSize = 6.0000002375
 shader_parameter/Posterize = true
 shader_parameter/ColorSteps = 16
 shader_parameter/UsePalette = false
 shader_parameter/PaletteSize = 8
 shader_parameter/PaletteColor0 = Color(0.05, 0.05, 0.05, 1)
-shader_parameter/PaletteColor1 = Color(0.25, 0.15, 0.12, 1)
-shader_parameter/PaletteColor2 = Color(0.5, 0.35, 0.25, 1)
-shader_parameter/PaletteColor3 = Color(0.9, 0.85, 0.7, 1)
+shader_parameter/PaletteColor1 = Color(0.14901961, 0, 0, 1)
+shader_parameter/PaletteColor2 = Color(0.23921569, 0.05882353, 0, 1)
+shader_parameter/PaletteColor3 = Color(0.33333334, 0.05882353, 0, 1)
 shader_parameter/Brightness = 1.0
 shader_parameter/Saturation = 1.0
 shader_parameter/Contrast = 1.0
@@ -68,7 +73,7 @@ environment = SubResource("Environment_1bvp3")
 [node name="World" type="Node3D" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023739815, 1.9073486e-06, 49.995377)
 mesh = SubResource("PlaneMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Ground"]
@@ -101,6 +106,19 @@ shadow_blur = 10.0
 omni_range = 0.718
 omni_attenuation = 0.0
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="World/woodenhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23348194, 3.838055, 1.253006)
+light_color = Color(1, 0.54901963, 0.28627452, 1)
+light_energy = 0.1
+light_indirect_energy = 2.205
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 3.587
+shadow_normal_bias = 0.0
+shadow_blur = 10.0
+omni_range = 5.944
+omni_attenuation = 0.0
+
 [node name="Trees" type="Node3D" parent="World"]
 
 [node name="DeadTree_32" parent="World/Trees" instance=ExtResource("2_w48qg")]
@@ -110,10 +128,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5292177, 0.33555448, 0.7445
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0694094, 0.24277201, 2.9604416)
 
 [node name="CommonTree_22" parent="World/Trees" instance=ExtResource("4_2cqfq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.033222, 0.24277297, 6.0369797)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0893292, 0.24277297, 6.0369797)
 
 [node name="CommonTree_27" parent="World/Trees" instance=ExtResource("4_2cqfq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9741402, 0.24277297, 10.293396)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0597441, 0.24277297, 10.293396)
 
 [node name="CommonTree_28" parent="World/Trees" instance=ExtResource("4_2cqfq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8263245, 0.24277392, 13.863882)
@@ -134,7 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0726104, 0.24277392, 37.76
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1385894, 0.24277392, 33.361397)
 
 [node name="CommonTree_23" parent="World/Trees" instance=ExtResource("4_2cqfq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2961006, 0.24277297, 11.610169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9235418, 0.24277297, 9.696946)
 
 [node name="CommonTree_24" parent="World/Trees" instance=ExtResource("4_2cqfq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.502864, 0.24277201, 13.399677)
@@ -176,7 +194,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.313591, 0.33555555, 1.8866
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.097314, 0.3355546, 4.522728)
 
 [node name="DeadTree_42" parent="World/Trees" instance=ExtResource("9_getpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2028894, 0.33555555, 7.194874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2585993, 0.34414983, 7.037069)
 
 [node name="DeadTree_43" parent="World/Trees" instance=ExtResource("9_getpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1866455, 0.33555555, 20.308764)
@@ -194,10 +212,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1067057, 0.33555555, 34.51
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.173526, 0.3355546, 9.850517)
 
 [node name="TwistedTree_52" parent="World/Trees" instance=ExtResource("11_d13ii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.525012, 0.20147277, 51.52001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.984528, 0.20147277, 50.77071)
 
 [node name="TwistedTree_42" parent="World/Trees" instance=ExtResource("12_1u8w0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.817347, 0.20147468, 55.161934)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9048367, 0.20147468, 52.770546)
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_lquwl")
@@ -206,6 +224,7 @@ curve = SubResource("Curve3D_lquwl")
 transform = Transform3D(-1, 0, -8.742261e-08, 0, 0.9999981, 0, 8.742278e-08, 0, -0.9999981, 0, 2, 0.014)
 loop = false
 script = ExtResource("2_h2yge")
+speed = 10
 
 [node name="Head" type="Node3D" parent="Path3D/PlayerPathFollow"]
 script = ExtResource("14_2cqfq")
@@ -215,14 +234,44 @@ script = ExtResource("14_2cqfq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PlayerPathFollow/Head/Camera3D"]
 mesh = SubResource("QuadMesh_lquwl")
 
-[node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow"]
-transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 2.2000847e-07, 0, -2.5166082)
+[node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow/Head/Camera3D"]
+transform = Transform3D(1, 0, -4.2632564e-14, 0, 0.9999981, 0, 4.2632564e-14, 0, 0.9999981, -0.54559004, -0.681764, -1.9999961)
 script = ExtResource("15_vivmo")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Candle"]
+[node name="HNIY_Torch_v001" parent="Path3D/PlayerPathFollow/Head/Camera3D/Candle" instance=ExtResource("17_yaehf")]
+transform = Transform3D(-7, 0, 1.0569706e-06, 0, 7, 0, -1.0569706e-06, 0, -7, 0, -0.15550756, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Head/Camera3D/Candle"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1.0000019, 0, -8.742296e-08, 0, -1.0000019, 0, 0, 0)
-light_color = Color(1, 0.67058825, 0.27058825, 1)
-light_energy = 1.973
-light_size = 0.068
-light_specular = 0.0
+light_color = Color(0.51207983, 0.20066702, 0, 1)
+light_energy = 16.0
+light_size = 0.027
+light_specular = 1.081
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_blur = 0.0
+omni_range = 10.0
+omni_attenuation = 1.5
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+vertical = true
+
+[node name="TextureRect" type="TextureRect" parent="Container/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("18_074og")
+stretch_mode = 4
