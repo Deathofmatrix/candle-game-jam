@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://q8dxv8eghb0g"]
+[gd_scene load_steps=32 format=3 uid="uid://q8dxv8eghb0g"]
 
 [ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
@@ -68,23 +68,6 @@ size = Vector2(2, 2)
 center_offset = Vector3(0, 0, -1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_074og"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cegan"]
-noise_type = 2
-frequency = 0.3
-cellular_distance_function = 1
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_82xsv"]
-noise = SubResource("FastNoiseLite_cegan")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cegan"]
-emission_enabled = true
-emission = Color(0.75686276, 0.078431375, 0, 1)
-billboard_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_82xsv"]
-material = SubResource("StandardMaterial3D_cegan")
-size = Vector2(0.01, 0.01)
 
 [sub_resource type="Animation" id="Animation_82xsv"]
 length = 0.001
@@ -255,7 +238,6 @@ light_color = Color(1, 0.54901963, 0.28627452, 1)
 light_energy = 3.553
 light_indirect_energy = 0.0
 light_size = 0.329
-light_cull_mask = 4294967293
 spot_range = 4096.0
 spot_attenuation = 4.48
 spot_angle = 77.61
@@ -269,7 +251,6 @@ shadow_enabled = true
 shadow_bias = 3.587
 shadow_normal_bias = 0.0
 shadow_blur = 10.0
-shadow_caster_mask = 4294967293
 omni_range = 0.718
 omni_attenuation = 0.0
 
@@ -283,7 +264,6 @@ shadow_enabled = true
 shadow_bias = 3.587
 shadow_normal_bias = 0.0
 shadow_blur = 10.0
-shadow_caster_mask = 4294967293
 omni_range = 5.944
 omni_attenuation = 0.0
 
@@ -392,6 +372,7 @@ curve = SubResource("Curve3D_lquwl")
 transform = Transform3D(-1, 0, -8.742261e-08, 0, 0.9999981, 0, 8.742278e-08, 0, -0.9999981, 0, 2, 0)
 loop = false
 script = ExtResource("2_h2yge")
+speed = 10
 
 [node name="Head" type="Node3D" parent="Path3D/PlayerPathFollow"]
 script = ExtResource("14_2cqfq")
@@ -409,7 +390,6 @@ mesh = SubResource("SphereMesh_074og")
 [node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow"]
 transform = Transform3D(1, 0, -8.526513e-14, 0, 1, 0, 8.526513e-14, 0, 1, -0.54559016, -0.6817653, -0.9754138)
 script = ExtResource("15_vivmo")
-noise = SubResource("NoiseTexture3D_82xsv")
 
 [node name="Holder" type="Node3D" parent="Path3D/PlayerPathFollow/Candle"]
 
@@ -419,47 +399,15 @@ transform = Transform3D(-7, 0, 1.0569706e-06, 0, 7, 0, -1.0569706e-06, 0, -7, 0,
 [node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]
 transform = Transform3D(-1, 0, 8.742285e-08, 0, 1.0000019, 0, -8.742301e-08, 0, -1.0000019, 2.9802322e-07, 0.5100212, 0.005714655)
 light_color = Color(0.51207983, 0.20066702, 0, 1)
-light_energy = 11.832653
+light_energy = 16.0
 light_size = 0.027
 light_specular = 1.081
 shadow_enabled = true
 shadow_bias = 0.01
 shadow_normal_bias = 7.0
 shadow_opacity = 0.9
-shadow_caster_mask = 4294967293
 omni_range = 10.0
 omni_attenuation = 1.5
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
-layers = 2
-amount = 40
-mesh = SubResource("QuadMesh_82xsv")
-emission_shape = 3
-emission_box_extents = Vector3(0.1, 0.1, 0.1)
-direction = Vector3(0, 1, 0)
-spread = 80.27
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.1
-initial_velocity_max = 0.2
-damping_max = 0.1
-
-[node name="CPUParticles3D2" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110862255, 0)
-layers = 2
-amount = 100
-lifetime = 2.0
-randomness = 1.0
-lifetime_randomness = 1.0
-local_coords = true
-mesh = SubResource("QuadMesh_82xsv")
-emission_shape = 1
-emission_sphere_radius = 0.04
-direction = Vector3(0, 1, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.1
-initial_velocity_max = 0.3
-damping_max = 0.01
 
 [node name="HoldingHand" type="Sprite3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]
 transform = Transform3D(0.70710677, -0.40557978, 0.5792279, 0, 0.819152, 0.5735764, -0.70710677, -0.40557978, 0.5792279, 0.14463758, -0.6233692, 0.28447902)
