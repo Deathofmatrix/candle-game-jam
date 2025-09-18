@@ -36,7 +36,6 @@
 [sub_resource type="Sky" id="Sky_1bvp3"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
-background_mode = 1
 sky = SubResource("Sky_1bvp3")
 tonemap_mode = 2
 
@@ -52,7 +51,7 @@ data = PackedVector3Array(5, 0, 50, -5, 0, 50, 5, 0, -50, -5, 0, 50, -5, 0, -50,
 
 [sub_resource type="Curve3D" id="Curve3D_lquwl"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 70),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -167,21 +166,9 @@ tracks/5/keys = {
 "points": PackedFloat32Array(1.3231692, 0, 0, 0.16666667, -0.20836155),
 "times": PackedFloat32Array(0)
 }
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Candle/Holder/OmniLight3D:omni_attenuation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_cegan"]
 resource_name = "cover_candle"
-length = 0.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -191,7 +178,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.54559016, -0.25, 0, 0.25, 0, 0, -0.16666667, -0.0909317, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -202,7 +189,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.6817653, -0.25, 0, 0.25, 0, -1, -0.16666667, 0.053039115, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -213,7 +200,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.9754138, -0.25, 0, 0.25, 0, -0.5, -0.16666667, -0.079235636, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -224,7 +211,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(1.61, 0, 0, 0.16666667, -0.09008016, 0.265, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -235,7 +222,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(-0.8, 0, 0, 0.16666667, 0.14602038, 0.417, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -246,18 +233,7 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(1.3231692, 0, 0, 0.16666667, -0.20836155, 0.103, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Candle/Holder/OmniLight3D:omni_attenuation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(1.3, -0.25, 0, 0.25, 0, 2, -0.10000001, -0.11666668, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_getpj"]
@@ -283,7 +259,7 @@ mesh = SubResource("PlaneMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_0xm2m")
 
 [node name="woodenhouse" parent="World" instance=ExtResource("1_h2yge")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.1166015, -1.850071, 70.040344)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.1166015, -1.850071, 100.06112)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World/woodenhouse"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.6266924, 4.0112076, -0.4363327)
@@ -541,37 +517,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8427796, 0.050843496, 39.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.683652, 0.5769663, 37.9166)
 
 [node name="RockPath_Round_Thin2" parent="World/foliage and rocks" instance=ExtResource("17_ok6jj")]
-transform = Transform3D(0.9947458, 0, 0.102375865, 0, 1, 0, -0.102375865, 0, 0.9947458, -0.008263469, -0.07126971, 69.00663)
+transform = Transform3D(0.9947458, 0, 0.102375865, 0, 1, 0, -0.102375865, 0, 0.9947458, -0.008263469, -0.07126971, 99.027405)
 
 [node name="RockPath_Round_Thin3" parent="World/foliage and rocks" instance=ExtResource("17_ok6jj")]
-transform = Transform3D(0.998492, 0, -0.0548979, 0, 1, 0, 0.0548979, 0, 0.998492, -0.016298294, -0.076645754, 67.12575)
+transform = Transform3D(0.998492, 0, -0.0548979, 0, 1, 0, 0.0548979, 0, 0.998492, -0.016298294, -0.076645754, 97.14652)
 
 [node name="RockPath_Round_Small_32" parent="World/foliage and rocks" instance=ExtResource("18_facbu")]
-transform = Transform3D(0.91769916, 0, -0.39727604, 0, 1, 0, 0.39727604, 0, 0.91769916, -0.00834547, -0.0795003, 65.526024)
+transform = Transform3D(0.91769916, 0, -0.39727604, 0, 1, 0, 0.39727604, 0, 0.91769916, -0.00834547, -0.0795003, 95.5468)
 
 [node name="RockPath_Round_Small_22" parent="World/foliage and rocks" instance=ExtResource("19_b1qrp")]
-transform = Transform3D(0.96919656, 0, 0.24628863, 0, 1, 0, -0.24628863, 0, 0.96919656, -0.19711217, -0.07094835, 64.386475)
+transform = Transform3D(0.96919656, 0, 0.24628863, 0, 1, 0, -0.24628863, 0, 0.96919656, -0.19711217, -0.07094835, 94.40725)
 
 [node name="RockPath_Round_Small_12" parent="World/foliage and rocks" instance=ExtResource("20_come4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5327307, -0.07729414, 63.033478)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5327307, -0.07729414, 93.05425)
 
 [node name="Mushroom_Laetiporus2" parent="World/foliage and rocks" instance=ExtResource("21_h8e4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.909747, 0, 70.08192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.909747, 0, 100.10269)
 
 [node name="Mushroom_Common2" parent="World/foliage and rocks" instance=ExtResource("22_4lmeg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0181394, 0.0174724, 69.74477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0181394, 0.0174724, 99.76554)
 
 [node name="Pebble_Round_52" parent="World/foliage and rocks" instance=ExtResource("23_0cp0l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6274642, -0.05040312, 66.043526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6274642, -0.05040312, 96.0643)
 
 [node name="Pebble_Round_42" parent="World/foliage and rocks" instance=ExtResource("24_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.043899536, -0.07732772, 62.232643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.043899536, -0.07732772, 92.25342)
 
 [node name="Mushroom_Laetiporus3" parent="World/foliage and rocks" instance=ExtResource("21_h8e4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8509071, 0.16022703, 38.037857)
 
 [node name="Pebble_Round_32" parent="World/foliage and rocks" instance=ExtResource("25_gngh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5850229, -0.08120687, 61.379547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5850229, -0.08120687, 91.40032)
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_lquwl")
@@ -587,6 +563,7 @@ script = ExtResource("14_2cqfq")
 [node name="Camera3D" type="Camera3D" parent="Path3D/PlayerPathFollow/Head"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PlayerPathFollow/Head/Camera3D"]
+visible = false
 mesh = SubResource("QuadMesh_lquwl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PlayerPathFollow/Head"]
@@ -607,7 +584,7 @@ transform = Transform3D(-7, 0, 1.0569706e-06, 0, 7, 0, -1.0569706e-06, 0, -7, 0,
 [node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]
 transform = Transform3D(-1, 0, 8.742285e-08, 0, 1.0000019, 0, -8.742301e-08, 0, -1.0000019, 2.9802322e-07, 0.5100212, 0.005714655)
 light_color = Color(0.51207983, 0.20066702, 0, 1)
-light_energy = 12.822717
+light_energy = 11.3056755
 light_size = 0.027
 light_specular = 1.081
 shadow_enabled = true
@@ -616,7 +593,7 @@ shadow_normal_bias = 7.0
 shadow_opacity = 0.9
 shadow_caster_mask = 4294967293
 omni_range = 15.0
-omni_attenuation = 1.3
+omni_attenuation = 1.5
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
 layers = 2
