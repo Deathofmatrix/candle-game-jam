@@ -8,13 +8,24 @@ var is_moving: bool = false
 var torch_tween_y: Tween
 var torch_tween_x: Tween
 
+var torch_level: float = 100
+
 @onready var holder: Node3D = $Holder
 @onready var omni_light_3d: OmniLight3D = $Holder/OmniLight3D
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var outside_fire_particles: CPUParticles3D = $Holder/OmniLight3D/OutsideFireParticles
+@onready var fire_particles: CPUParticles3D = $Holder/OmniLight3D/FireParticles
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $Holder/AudioStreamPlayer3D
 
 
 func _process(delta: float) -> void:
 	time_passed += delta
+	torch_level -= delta * 4
+	omni_light_3d.omni_range = remap(torch_level, 0, 100, 2.5, 16)
+	
+	if torch_level <= 0:
+		torch_expire()
+		omni_light_3d.omni_range = 0
 	
 	var sampled_noise = noise.noise.get_noise_1d(time_passed)
 	sampled_noise = abs(sampled_noise)
@@ -48,3 +59,9 @@ func bounce_torch():
 func stop_torch_bounce():
 	torch_tween_y.pause()
 	torch_tween_x.pause()
+
+
+func torch_expire():
+	fire_particles.emitting = false
+	outside_fire_particles.emitting = false
+	audio_stream_player_3d.stop()

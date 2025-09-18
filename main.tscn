@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://q8dxv8eghb0g"]
+[gd_scene load_steps=51 format=3 uid="uid://q8dxv8eghb0g"]
 
 [ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://hwty28baj2bi" path="res://assets/Envuironment (glTF)/Pebble_Round_5.gltf" id="23_0cp0l"]
 [ext_resource type="PackedScene" uid="uid://ces1fngtphigp" path="res://assets/Envuironment (glTF)/Pebble_Round_4.gltf" id="24_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://8xr6i1itgkr7" path="res://assets/Envuironment (glTF)/Pebble_Round_3.gltf" id="25_gngh3"]
+[ext_resource type="AudioStream" uid="uid://ddr6e53lltoyn" path="res://assets/audio/ambience.wav" id="29_jq2sk"]
+[ext_resource type="AudioStream" uid="uid://cej70jmyiek1p" path="res://assets/audio/fire.mp3" id="34_4k2k6"]
 
 [sub_resource type="Sky" id="Sky_1bvp3"]
 
@@ -594,6 +596,11 @@ transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 2.1316282e-14, 0, 0.95240
 cast_shadow = 0
 mesh = SubResource("SphereMesh_074og")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Path3D/PlayerPathFollow/Head"]
+stream = ExtResource("29_jq2sk")
+volume_db = -15.0
+autoplay = true
+
 [node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow"]
 transform = Transform3D(1, 0, -8.526513e-14, 0, 1, 0, 8.526513e-14, 0, 1, -0.54559016, -0.6817653, -0.9754138)
 script = ExtResource("15_vivmo")
@@ -615,10 +622,10 @@ shadow_bias = 0.01
 shadow_normal_bias = 7.0
 shadow_opacity = 0.9
 shadow_caster_mask = 4294967293
-omni_range = 15.0
+omni_range = 16.0
 omni_attenuation = 1.3
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
+[node name="OutsideFireParticles" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
 layers = 2
 amount = 40
 mesh = SubResource("QuadMesh_82xsv")
@@ -631,7 +638,7 @@ initial_velocity_min = 0.1
 initial_velocity_max = 0.2
 damping_max = 0.1
 
-[node name="CPUParticles3D2" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
+[node name="FireParticles" type="CPUParticles3D" parent="Path3D/PlayerPathFollow/Candle/Holder/OmniLight3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110862255, 0)
 layers = 2
 amount = 100
@@ -680,6 +687,12 @@ double_sided = false
 alpha_cut = 1
 texture = ExtResource("19_cegan")
 region_rect = Rect2(0.29935646, 0, 126.700645, 198.56216)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1.0000019, 0, 7.1054274e-15, 0, 1.0000019, 0, 0.3630762, 0)
+stream = ExtResource("34_4k2k6")
+volume_db = -5.0
+autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D/PlayerPathFollow"]
 libraries = {
