@@ -1,7 +1,7 @@
 class_name PlayerController
 extends PathFollow3D
 
-@export var speed := 1
+@export var speed := 1.0
 
 
 func _physics_process(delta: float) -> void:

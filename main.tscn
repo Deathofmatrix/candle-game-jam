@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://q8dxv8eghb0g"]
+[gd_scene load_steps=55 format=3 uid="uid://q8dxv8eghb0g"]
 
 [ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://yetom2h7l6pj" path="res://assets/Envuironment (glTF)/TwistedTree_5.gltf" id="11_d13ii"]
 [ext_resource type="PackedScene" uid="uid://dm4ekbtk6o5as" path="res://assets/Envuironment (glTF)/TwistedTree_4.gltf" id="12_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://i5usgb0864iq" path="res://assets/Envuironment (glTF)/Pine_5.gltf" id="13_htxhm"]
+[ext_resource type="PackedScene" uid="uid://n8hrsew8xdyk" path="res://assets/Envuironment (glTF)/DeadTree_1.gltf" id="14_0rl1p"]
 [ext_resource type="Script" uid="uid://ds077tbntb54c" path="res://camera_controller.gd" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://d0unn1i0tymm0" path="res://assets/Envuironment (glTF)/Rock_Medium_3.gltf" id="14_jq2sk"]
 [ext_resource type="PackedScene" uid="uid://cykg2ekp0uthw" path="res://assets/Envuironment (glTF)/Rock_Medium_1.gltf" id="15_4k2k6"]
@@ -32,8 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://hwty28baj2bi" path="res://assets/Envuironment (glTF)/Pebble_Round_5.gltf" id="23_0cp0l"]
 [ext_resource type="PackedScene" uid="uid://ces1fngtphigp" path="res://assets/Envuironment (glTF)/Pebble_Round_4.gltf" id="24_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://8xr6i1itgkr7" path="res://assets/Envuironment (glTF)/Pebble_Round_3.gltf" id="25_gngh3"]
+[ext_resource type="Script" uid="uid://doahyltif8yiu" path="res://wind.gd" id="27_facbu"]
+[ext_resource type="AudioStream" uid="uid://cri43maxdc0jo" path="res://assets/audio/Retro Beat.ogg" id="28_b1qrp"]
 [ext_resource type="AudioStream" uid="uid://ddr6e53lltoyn" path="res://assets/audio/ambience.wav" id="29_jq2sk"]
 [ext_resource type="AudioStream" uid="uid://cej70jmyiek1p" path="res://assets/audio/fire.mp3" id="34_4k2k6"]
+[ext_resource type="AudioStream" uid="uid://bv3umtmferqtv" path="res://assets/audio/Footstep.wav" id="36_ok6jj"]
 
 [sub_resource type="Sky" id="Sky_1bvp3"]
 
@@ -86,6 +90,7 @@ center_offset = Vector3(0, 0, -1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cegan"]
 noise_type = 2
+seed = -1
 frequency = 0.3
 cellular_distance_function = 1
 
@@ -507,11 +512,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1067057, 0.33555555, 34.51
 [node name="DeadTree_52" parent="World/Trees" instance=ExtResource("10_ryguw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.173526, 0.3355546, 9.850517)
 
-[node name="TwistedTree_52" parent="World/Trees" instance=ExtResource("11_d13ii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.984528, 0.20147277, 50.77071)
+[node name="TwistedTree_55" parent="World/Trees" instance=ExtResource("11_d13ii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2904863, 0.20810963, 37.866245)
 
-[node name="TwistedTree_42" parent="World/Trees" instance=ExtResource("12_1u8w0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9048367, 0.20147468, 52.770546)
+[node name="TwistedTree_43" parent="World/Trees" instance=ExtResource("12_1u8w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.427403, 0.2081113, 39.203915)
 
 [node name="Pine_52" parent="World/Trees" instance=ExtResource("13_htxhm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6620226, 0, 28.44543)
@@ -521,6 +526,87 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8108745, 0.20147659, 33.019
 
 [node name="TwistedTree_54" parent="World/Trees" instance=ExtResource("11_d13ii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3609548, 0, 39.63518)
+
+[node name="DeadTree_12" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3408194, 0.33555627, 54.50665)
+
+[node name="DeadTree_13" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8219845, 0.33555627, 56.181606)
+
+[node name="DeadTree_23" parent="World/Trees" instance=ExtResource("8_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6285615, 0.33555603, 52.783203)
+
+[node name="DeadTree_14" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8871288, 0.3355565, 44.758034)
+
+[node name="DeadTree_53" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7057295, 0.33555627, 43.128426)
+
+[node name="DeadTree_47" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9964466, 0.3355565, 46.11851)
+
+[node name="DeadTree_24" parent="World/Trees" instance=ExtResource("8_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4155397, 0.33555627, 48.56364)
+
+[node name="DeadTree_15" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2755089, 0.33555627, 49.570988)
+
+[node name="DeadTree_25" parent="World/Trees" instance=ExtResource("8_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.852396, 0, 42.276783)
+
+[node name="DeadTree_16" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9148664, 0, 49.77267)
+
+[node name="DeadTree_54" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4644947, 0, 45.39994)
+
+[node name="DeadTree_48" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0201674, 0.33555627, 41.64462)
+
+[node name="DeadTree_39" parent="World/Trees" instance=ExtResource("2_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.066637, 0, 48.2222)
+
+[node name="DeadTree_49" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1566615, 0, 45.5847)
+
+[node name="DeadTree_40" parent="World/Trees" instance=ExtResource("2_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8136783, -2.3841858e-07, 48.11846)
+
+[node name="DeadTree_17" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9084635, 0, 59.567207)
+
+[node name="DeadTree_18" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.995254, 0.3355565, 70.065155)
+
+[node name="DeadTree_26" parent="World/Trees" instance=ExtResource("8_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9052892, 0, 61.785915)
+
+[node name="DeadTree_41" parent="World/Trees" instance=ExtResource("2_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.439113, 1.1920929e-07, 67.47861)
+
+[node name="DeadTree_50" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3167777, -1.1920929e-07, 68.059525)
+
+[node name="DeadTree_55" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.440663, 0.3355564, 54.16572)
+
+[node name="DeadTree_19" parent="World/Trees" instance=ExtResource("14_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4840033, 0.33555627, 63.133495)
+
+[node name="DeadTree_51" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.358723, 0.3355565, 77.093506)
+
+[node name="DeadTree_56" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.071137, 0, 75.15519)
+
+[node name="DeadTree_57" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8980646, 0, 75.38724)
+
+[node name="DeadTree_58" parent="World/Trees" instance=ExtResource("10_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0474467, 0.3355565, 81.03645)
+
+[node name="DeadTree_59" parent="World/Trees" instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.266735, 0.3355565, 81.90676)
 
 [node name="foliage and rocks" type="Node3D" parent="World"]
 
@@ -575,6 +661,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8509071, 0.16022703, 38.03
 [node name="Pebble_Round_32" parent="World/foliage and rocks" instance=ExtResource("25_gngh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5850229, -0.08120687, 61.379547)
 
+[node name="Rock_Medium_14" parent="World/foliage and rocks" instance=ExtResource("15_4k2k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1091013, 0.27113324, 60.172447)
+
+[node name="Rock_Medium_34" parent="World/foliage and rocks" instance=ExtResource("14_jq2sk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3293934, 0, 62.71833)
+
+[node name="Mushroom_Common3" parent="World/foliage and rocks" instance=ExtResource("22_4lmeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6099133, 0.017472876, 59.841377)
+
+[node name="Mushroom_Common4" parent="World/foliage and rocks" instance=ExtResource("22_4lmeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9877217, 0.017472876, 64.82971)
+
+[node name="Mushroom_Laetiporus4" parent="World/foliage and rocks" instance=ExtResource("21_h8e4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5667284, 0.16022703, 61.63793)
+
+[node name="Wind" type="Node3D" parent="World"]
+script = ExtResource("27_facbu")
+
+[node name="WindCooldown" type="Timer" parent="World/Wind"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="WindLength" type="Timer" parent="World/Wind"]
+one_shot = true
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="World/Wind"]
+stream = ExtResource("28_b1qrp")
+
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_lquwl")
 
@@ -596,10 +711,16 @@ transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 2.1316282e-14, 0, 0.95240
 cast_shadow = 0
 mesh = SubResource("SphereMesh_074og")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Path3D/PlayerPathFollow/Head"]
+[node name="Ambience Sound" type="AudioStreamPlayer3D" parent="Path3D/PlayerPathFollow/Head"]
 stream = ExtResource("29_jq2sk")
 volume_db = -15.0
 autoplay = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Path3D/PlayerPathFollow/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -6.3948846e-14, 0, 1.0000019, 0, 6.3948846e-14, 0, 1.0000019, 0, -1.481, 0)
+stream = ExtResource("36_ok6jj")
+volume_db = -10.0
 
 [node name="Candle" type="Node3D" parent="Path3D/PlayerPathFollow"]
 transform = Transform3D(1, 0, -8.526513e-14, 0, 1, 0, 8.526513e-14, 0, 1, -0.54559016, -0.6817653, -0.9754138)
@@ -614,7 +735,7 @@ transform = Transform3D(-7, 0, 1.0569706e-06, 0, 7, 0, -1.0569706e-06, 0, -7, 0,
 [node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]
 transform = Transform3D(-1, 0, 8.742285e-08, 0, 1.0000019, 0, -8.742301e-08, 0, -1.0000019, 2.9802322e-07, 0.5100212, 0.005714655)
 light_color = Color(0.51207983, 0.20066702, 0, 1)
-light_energy = 12.822717
+light_energy = 11.163606
 light_size = 0.027
 light_specular = 1.081
 shadow_enabled = true
@@ -698,3 +819,6 @@ autoplay = true
 libraries = {
 &"": SubResource("AnimationLibrary_getpj")
 }
+
+[connection signal="timeout" from="World/Wind/WindCooldown" to="World/Wind" method="_on_wind_cooldown_timeout"]
+[connection signal="timeout" from="World/Wind/WindLength" to="World/Wind" method="_on_wind_length_timeout"]
