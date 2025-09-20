@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var torch: Torch 
+
 @onready var wind_cooldown: Timer = $WindCooldown
 @onready var wind_length: Timer = $WindLength
 @onready var wind_player: AudioStreamPlayer = $WindPlayer
@@ -11,6 +13,8 @@ func _on_wind_cooldown_timeout() -> void:
 	
 	wind_player.play()
 	print("start wind")
+	
+	torch.react_to_wind()
 
 
 func _on_wind_length_timeout() -> void:
@@ -19,3 +23,5 @@ func _on_wind_length_timeout() -> void:
 	
 	wind_player.stop()
 	print("stop wind")
+	
+	torch.stop_reacting_to_wind()

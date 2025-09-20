@@ -676,15 +676,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9877217, 0.017472876, 64.8
 [node name="Mushroom_Laetiporus4" parent="World/foliage and rocks" instance=ExtResource("21_h8e4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5667284, 0.16022703, 61.63793)
 
-[node name="Wind" type="Node3D" parent="World"]
+[node name="Wind" type="Node3D" parent="World" node_paths=PackedStringArray("torch")]
 script = ExtResource("27_facbu")
+torch = NodePath("../../Path3D/PlayerPathFollow/Candle")
 
 [node name="WindCooldown" type="Timer" parent="World/Wind"]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
 [node name="WindLength" type="Timer" parent="World/Wind"]
+wait_time = 7.0
 one_shot = true
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="World/Wind"]
@@ -752,9 +754,9 @@ amount = 40
 mesh = SubResource("QuadMesh_82xsv")
 emission_shape = 3
 emission_box_extents = Vector3(0.1, 0.1, 0.1)
-direction = Vector3(0, 1, 0)
+direction = Vector3(0, 0.1, 0)
 spread = 80.27
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.1, 0)
 initial_velocity_min = 0.1
 initial_velocity_max = 0.2
 damping_max = 0.1
@@ -770,11 +772,11 @@ local_coords = true
 mesh = SubResource("QuadMesh_82xsv")
 emission_shape = 1
 emission_sphere_radius = 0.04
-direction = Vector3(0, 1, 0)
+direction = Vector3(0, 0.1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.2, 0)
 initial_velocity_min = 0.1
-initial_velocity_max = 0.3
+initial_velocity_max = 0.1
 damping_max = 0.01
 
 [node name="HoldingHand" type="Sprite3D" parent="Path3D/PlayerPathFollow/Candle/Holder"]

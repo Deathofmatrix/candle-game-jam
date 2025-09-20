@@ -9,6 +9,9 @@ var torch_tween_y: Tween
 var torch_tween_x: Tween
 
 var torch_level: float = 100
+var wind_mult: float = 1
+var is_windy = false
+var is_shield = false
 
 @onready var holder: Node3D = $Holder
 @onready var omni_light_3d: OmniLight3D = $Holder/OmniLight3D
@@ -21,12 +24,17 @@ var torch_level: float = 100
 
 func _process(delta: float) -> void:
 	time_passed += delta
-	torch_level -= delta
+	torch_level -= delta * wind_mult
 	omni_light_3d.omni_range = remap(torch_level, 0, 100, 2.5, 16)
 	
 	if torch_level <= 0:
 		torch_expire()
 		omni_light_3d.omni_range = 0
+	
+	if not is_shield and is_windy:
+		wind_mult = 2
+	else:
+		wind_mult = 1
 	
 	var sampled_noise = noise.noise.get_noise_1d(time_passed)
 	sampled_noise = abs(sampled_noise)
@@ -36,19 +44,23 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_forward"):
 		bounce_torch()
 		is_moving = true
+		fire_particles.direction.z = -1
 	elif Input.is_action_just_released("move_forward"):
 		stop_torch_bounce()
 		is_moving = false
+		fire_particles.direction.z = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shield_candle"):
+		is_shield = true
 		animation_player.play("cover_candle")
 		player_path_follow.speed = 0.6
 		if Input.is_action_pressed("move_forward"):
 			stop_torch_bounce()
 			bounce_torch()
 	elif Input.is_action_just_released("shield_candle"):
+		is_shield = false
 		animation_player.play_backwards("cover_candle")
 		player_path_follow.speed = 1
 		if Input.is_action_pressed("move_forward"):
@@ -85,4 +97,15 @@ func play_footstep_sound(x_pos: float):
 	footstep_player.position.x = x_pos
 	footstep_player.pitch_scale = randf_range(1.0, 1.1)
 	footstep_player.play(0.45)
-	
+
+
+func react_to_wind():
+	fire_particles.direction.x = -1
+	outside_fire_particles.direction.x = -1
+	is_windy = true
+
+
+func stop_reacting_to_wind():
+	fire_particles.direction.x = 0
+	outside_fire_particles.direction.x = 0
+	is_windy = false
