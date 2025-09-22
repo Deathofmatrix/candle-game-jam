@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://ces1fngtphigp" path="res://assets/Envuironment (glTF)/Pebble_Round_4.gltf" id="24_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://8xr6i1itgkr7" path="res://assets/Envuironment (glTF)/Pebble_Round_3.gltf" id="25_gngh3"]
 [ext_resource type="Script" uid="uid://doahyltif8yiu" path="res://wind.gd" id="27_facbu"]
-[ext_resource type="AudioStream" uid="uid://cri43maxdc0jo" path="res://assets/audio/Retro Beat.ogg" id="28_b1qrp"]
+[ext_resource type="AudioStream" uid="uid://b7rvu7viw2qgu" path="res://assets/audio/strong-wind.mp3" id="28_b1qrp"]
 [ext_resource type="AudioStream" uid="uid://ddr6e53lltoyn" path="res://assets/audio/ambience.wav" id="29_jq2sk"]
 [ext_resource type="AudioStream" uid="uid://cej70jmyiek1p" path="res://assets/audio/fire.mp3" id="34_4k2k6"]
 [ext_resource type="AudioStream" uid="uid://bv3umtmferqtv" path="res://assets/audio/Footstep.wav" id="36_ok6jj"]
@@ -691,6 +691,9 @@ one_shot = true
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="World/Wind"]
 stream = ExtResource("28_b1qrp")
+autoplay = true
+stream_paused = true
+parameters/looping = true
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_lquwl")

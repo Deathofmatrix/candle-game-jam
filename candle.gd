@@ -33,8 +33,12 @@ func _process(delta: float) -> void:
 	
 	if not is_shield and is_windy:
 		wind_mult = 2
+		noise.noise.frequency = 0.8
+		fire_particles.damping_max = 1.0
 	else:
 		wind_mult = 1
+		noise.noise.frequency = 0.3
+		fire_particles.damping_max = 0.01
 	
 	var sampled_noise = noise.noise.get_noise_1d(time_passed)
 	sampled_noise = abs(sampled_noise)
