@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://q8dxv8eghb0g"]
+[gd_scene load_steps=57 format=3 uid="uid://q8dxv8eghb0g"]
 
 [ext_resource type="PackedScene" uid="uid://b2qd87pinebcp" path="res://assets/house/woodenhouse.glb" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://dwwupqnbiq0wx" path="res://trees.gd" id="2_come4"]
 [ext_resource type="Script" uid="uid://bdgjg7mi6ogfn" path="res://player/player_controller.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bguif554fyh7n" path="res://assets/Envuironment (glTF)/DeadTree_3.gltf" id="2_w48qg"]
 [ext_resource type="PackedScene" uid="uid://gxnmjc34fko" path="res://assets/Envuironment (glTF)/CommonTree_1.gltf" id="3_vivmo"]
@@ -55,6 +56,9 @@ size = Vector2(15, 120)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
 data = PackedVector3Array(5, 0, 50, -5, 0, 50, 5, 0, -50, -5, 0, 50, -5, 0, -50, 5, 0, -50)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_come4"]
+frequency = 0.2
 
 [sub_resource type="Curve3D" id="Curve3D_lquwl"]
 _data = {
@@ -331,6 +335,7 @@ omni_range = 5.944
 omni_attenuation = 0.0
 
 [node name="Trees" type="Node3D" parent="World"]
+script = ExtResource("2_come4")
 
 [node name="DeadTree_32" parent="World/Trees" instance=ExtResource("2_w48qg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5292177, 0.33555448, 0.7445214)
@@ -605,7 +610,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8980646, 0, 75.38724)
 [node name="DeadTree_58" parent="World/Trees" instance=ExtResource("10_ryguw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0474467, 0.3355565, 81.03645)
 
-[node name="DeadTree_59" parent="World/Trees" instance=ExtResource("9_getpj")]
+[node name="DeadTree_59" parent="World/Trees" groups=["tree"] instance=ExtResource("9_getpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.266735, 0.3355565, 81.90676)
 
 [node name="foliage and rocks" type="Node3D" parent="World"]
@@ -679,6 +684,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5667284, 0.16022703, 61.637
 [node name="Wind" type="Node3D" parent="World" node_paths=PackedStringArray("torch")]
 script = ExtResource("27_facbu")
 torch = NodePath("../../Path3D/PlayerPathFollow/Candle")
+noise = SubResource("FastNoiseLite_come4")
 
 [node name="WindCooldown" type="Timer" parent="World/Wind"]
 wait_time = 10.0
@@ -692,7 +698,6 @@ one_shot = true
 [node name="WindPlayer" type="AudioStreamPlayer" parent="World/Wind"]
 stream = ExtResource("28_b1qrp")
 autoplay = true
-stream_paused = true
 parameters/looping = true
 
 [node name="Path3D" type="Path3D" parent="."]
