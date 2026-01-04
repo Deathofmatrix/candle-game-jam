@@ -25,10 +25,10 @@ func _process(delta: float) -> void:
 		print(noise.get_noise_3d(position.x, position.z, wind_time))
 		for tree in get_tree().get_nodes_in_group("tree"):
 			var noise_value: float = noise.get_noise_3d(tree.position.x, tree.position.z, wind_time)
-			var mapped_x: float = remap(noise_value, -1.0, 1.0, -0.1, 0.1)
+			var mapped_x: float = remap(noise_value, -1.0, 1.0, -0.15, 0.15)
 			
 			var noise_value_z: float = noise.get_noise_3d(tree.position.x + 100, tree.position.z + 100, wind_time)
-			var mapped_z: float = remap(noise_value_z, -1.0, 1.0, -0.1, 0.1)
+			var mapped_z: float = remap(noise_value_z, -1.0, 1.0, -0.15, 0.15)
 			
 			tree.rotation.x = mapped_x
 			tree.rotation.z = mapped_z

@@ -13,6 +13,8 @@ var wind_mult: float = 1
 var is_windy = false
 var is_shield = false
 
+var stabilise_light = false
+
 @onready var holder: Node3D = $Holder
 @onready var omni_light_3d: OmniLight3D = $Holder/OmniLight3D
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
@@ -24,21 +26,6 @@ var is_shield = false
 
 func _process(delta: float) -> void:
 	time_passed += delta
-	torch_level -= delta * wind_mult
-	omni_light_3d.omni_range = remap(torch_level, 0, 100, 2.5, 16)
-	
-	if torch_level <= 0:
-		torch_expire()
-		omni_light_3d.omni_range = 0
-	
-	if not is_shield and is_windy:
-		wind_mult = 2
-		noise.noise.frequency = 0.8
-		fire_particles.damping_max = 1.0
-	else:
-		wind_mult = 1
-		noise.noise.frequency = 0.3
-		fire_particles.damping_max = 0.01
 	
 	var sampled_noise = noise.noise.get_noise_1d(time_passed)
 	sampled_noise = abs(sampled_noise)
@@ -48,11 +35,29 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_forward"):
 		bounce_torch()
 		is_moving = true
-		fire_particles.direction.z = -1
+		fire_particles.direction.z = -0.1
 	elif Input.is_action_just_released("move_forward"):
 		stop_torch_bounce()
 		is_moving = false
 		fire_particles.direction.z = 0
+		
+	if stabilise_light: return
+	
+	torch_level -= delta * wind_mult
+	omni_light_3d.omni_range = remap(torch_level, 0, 100, 2.5, 16)
+	
+	if torch_level <= 0:
+		torch_expire()
+		omni_light_3d.omni_range = 0
+		
+	if not is_shield and is_windy:
+		wind_mult = 2
+		noise.noise.frequency = 0.8
+		fire_particles.damping_max = 1.0
+	else:
+		wind_mult = 1
+		noise.noise.frequency = 0.3
+		fire_particles.damping_max = 0.01
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -95,6 +100,8 @@ func torch_expire():
 	fire_particles.emitting = false
 	outside_fire_particles.emitting = false
 	audio_stream_player_3d.stop()
+	
+	end_game()
 
 
 func play_footstep_sound(x_pos: float):
@@ -113,3 +120,7 @@ func stop_reacting_to_wind():
 	fire_particles.direction.x = 0
 	outside_fire_particles.direction.x = 0
 	is_windy = false
+
+
+func end_game():
+	$"../../../Control/LoseScreen".visible = true
